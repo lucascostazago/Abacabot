@@ -18,7 +18,7 @@ async def handle(reaction: discord.Reaction, user: discord.User | discord.Member
 
     is_staff = False
     if isinstance(user, discord.Member):
-        staff_role_names = {"staff", "suporte", "moderador", "admin", "team"}
+        staff_role_names = {"Time da Abacatepay","Admin"}
         is_staff = any(r.name.lower() in staff_role_names for r in user.roles)
 
     if not is_staff:
