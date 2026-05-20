@@ -30,14 +30,13 @@ async def handle(message: discord.Message) -> None:
         logger.info("Canal %s não monitorado. Monitorados: %s", effective_id, MONITORED_CHANNEL_IDS)
         return
 
-    # Ignora o post inicial do fórum — já capturado pelo on_thread_create
-    if isinstance(message.channel, discord.Thread) and message.id == message.channel.id:
+    # Ignora tudo que vier de dentro de uma thread de fórum —
+    # o post inicial já é capturado pelo on_thread_create
+    if isinstance(message.channel, discord.Thread) and isinstance(message.channel.parent, discord.ForumChannel):
         return
 
     # Pré-filtro local: só processa mensagens com sinal de dúvida ou bug
-    # (não se aplica a threads de fórum, que são sempre relevantes)
-    is_forum_reply = isinstance(message.channel, discord.Thread)
-    if not is_forum_reply and not pre_filter.is_relevant(message.content):
+    if not pre_filter.is_relevant(message.content):
         logger.info("Mensagem %s descartada pelo pré-filtro.", message.id)
         return
 
