@@ -1,4 +1,4 @@
-# Abacabot
+# 🥑 Abacabot 
 
 Bot de monitoramento para comunidades Discord. Lê, classifica e armazena mensagens automaticamente usando IA, ajudando times pequenos a acompanhar o que está acontecendo na comunidade sem precisar ficar de olho no chat o tempo todo.
 
