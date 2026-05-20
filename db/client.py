@@ -29,6 +29,9 @@ async def setup_indexes():
     await db.messages.create_index("created_at")
     await db.messages.create_index([("response_status.is_answered", 1), ("created_at", 1)])
     await db.messages.create_index("classification.category")
+    await db.messages.create_index("classification.tags")
     await db.channels_config.create_index(
         [("guild_id", 1), ("channel_id", 1)], unique=True
     )
+    await db.alerts.create_index([("category", 1), ("status", 1)])
+    await db.alerts.create_index("last_seen")
